@@ -56,6 +56,33 @@ button {
     animation: fill 2s forwards;
 }
 
+/* Style for the percentage container */
+.percentage-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+}
+
+/* Style for the progress bar */
+.percentage-bar {
+    height: 10px;
+    background-color: #4CAF50;
+    width: 0%; /* Initial width */
+    border-radius: 5px;
+    transition: width 2s ease-in-out; /* Smooth transition for the width */
+}
+
+/* Optional: Style for the percentage text */
+.percentage-text {
+    text-align: right;
+    padding-right: 5px;
+    font-size: 12px;
+}
+
+
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .answers li {
