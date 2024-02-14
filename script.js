@@ -1,28 +1,21 @@
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
+/ Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyDOL95NQ2Qct1_Dww8AtkbVaJyDbp0XBJk",
-    authDomain: "dynamic-quiz-9e1f2.firebaseapp.com",
-    projectId: "dynamic-quiz-9e1f2",
-    storageBucket: "dynamic-quiz-9e1f2.appspot.com",
-    messagingSenderId: "639613986688",
-    appId: "1:639613986688:web:770c27e02ed09f3a324365",
-    measurementId: "G-2L5TD4EJV8"
-  };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDOL95NQ2Qct1_Dww8AtkbVaJyDbp0XBJk",
+  authDomain: "dynamic-quiz-9e1f2.firebaseapp.com",
+  projectId: "dynamic-quiz-9e1f2",
+  storageBucket: "dynamic-quiz-9e1f2.appspot.com",
+  messagingSenderId: "639613986688",
+  appId: "1:639613986688:web:770c27e02ed09f3a324365",
+  measurementId: "G-2L5TD4EJV8"
+};
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
-
-
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 let currentQuestionIndex = 0;
 const quizData = [
