@@ -65,13 +65,13 @@ button {
     overflow: hidden;
 }
 
-/* Style for the progress bar */
+/* Adjusted Style for the progress bar to use keyframes animation */
 .percentage-bar {
     height: 10px;
     background-color: #4CAF50;
     width: 0%; /* Initial width */
     border-radius: 5px;
-    transition: width 2s ease-in-out; /* Smooth transition for the width */
+    animation: fill 2s forwards; /* Use the keyframes animation */
 }
 
 /* Optional: Style for the percentage text */
