@@ -1,8 +1,9 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #FAFAFA;
+    color: #333;
 }
 
 .quiz-container {
@@ -14,78 +15,58 @@ body, html {
 
 .answers li {
     list-style-type: none;
-    padding: 10px;
-    margin: 5px;
-    background-color: #ddd;
-    border: 1px solid #ccc;
+    margin: 10px auto;
+    padding: 12px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #DDD;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .answers li:hover {
-    transform: scale(1.05);
+    background-color: #F0F0F0;
+    transform: translateY(-2px);
 }
 
 button {
     padding: 10px 20px;
-    cursor: pointer;
-}
-
-/* Animation for results */
-@keyframes fill {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-.percentage {
-    position: relative;
-    height: 20px;
-    background: #eee;
-    margin-top: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.percentage::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: lightblue;
-    animation: fill 2s forwards;
-}
-
-/* Style for the percentage container */
-.percentage-container {
-    width: 100%;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    margin-top: 5px;
-    overflow: hidden;
-}
-
-/* Adjusted Style for the progress bar to use keyframes animation */
-.percentage-bar {
-    height: 10px;
     background-color: #4CAF50;
-    width: 0%; /* Initial width */
-    border-radius: 5px;
-    animation: fill 2s forwards; /* Use the keyframes animation */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
-/* Optional: Style for the percentage text */
-.percentage-text {
+button:hover {
+    background-color: #45a049;
+}
+
+#timer {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.percentage-bar {
+    height: 20px;
+    background-color: #4CAF50;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 2s ease-in-out;
+    color: white;
+    line-height: 20px;
+    padding-right: 10px;
     text-align: right;
-    padding-right: 5px;
-    font-size: 12px;
+    margin-top: 10px;
 }
 
-
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .answers li {
-        font-size: 14px;
+        width: calc(100% - 40px);
     }
 }
