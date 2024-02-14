@@ -1,0 +1,64 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.quiz-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.answers li {
+    list-style-type: none;
+    padding: 10px;
+    margin: 5px;
+    background-color: #ddd;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.answers li:hover {
+    transform: scale(1.05);
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Animation for results */
+@keyframes fill {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.percentage {
+    position: relative;
+    height: 20px;
+    background: #eee;
+    margin-top: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.percentage::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: lightblue;
+    animation: fill 2s forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .answers li {
+        font-size: 14px;
+    }
+}
