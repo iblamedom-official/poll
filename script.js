@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDOL95NQ2Qct1_Dww8AtkbVaJyDbp0XBJk",
     authDomain: "dynamic-quiz-9e1f2.firebaseapp.com",
@@ -11,56 +12,77 @@ const firebaseConfig = {
     measurementId: "G-2L5TD4EJV8"
 };
 
-initializeApp(firebaseConfig);
-const database = getDatabase();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
 
-const quizData = [
-    { question: "What is 2+2?", answers: ["4", "22", "3", "8"] },
-    { question: "Capital of France?", answers: ["Paris", "London", "Berlin", "Madrid"] },
-    { question: "Best programming language?", answers: ["JavaScript", "Python", "Ruby", "C++"] }
-];
+// Quiz Data and State
 let currentQuestionIndex = 0;
+let quizData = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-    populateQuiz();
-    startTimer();
-});
+// Function to start the quiz
+function startQuiz() {
+    fetchQuizData();
+}
 
+// Function to fetch quiz data
+function fetchQuizData() {
+    const quizRef = ref(database, 'quizData');
+    onValue(quizRef, (snapshot) => {
+        quizData = snapshot.val();
+        populateQuiz();
+    }, {
+        onlyOnce: true
+    });
+}
+
+// Function to populate the quiz question and answers
 function populateQuiz() {
     if (currentQuestionIndex < quizData.length) {
         const currentQuestion = quizData[currentQuestionIndex];
         document.getElementById('question').textContent = currentQuestion.question;
         const answersUl = document.getElementById('answers');
-        answersUl.innerHTML = '';
+        answersUl.innerHTML = ''; // Clear previous answers
         currentQuestion.answers.forEach((answer, index) => {
             const li = document.createElement('li');
             li.textContent = answer;
             li.onclick = () => selectAnswer(index);
             answersUl.appendChild(li);
         });
+        startTimer(); // Start or restart the timer for the new question
     } else {
         document.querySelector('.quiz-container').innerHTML = '<h2>Quiz Completed!</h2>';
     }
 }
 
+// Function to handle answer selection
 function selectAnswer(answerIndex) {
-    // Intentionally simplified: Increment response count in Firebase
+    // Placeholder for answer selection logic. This is where you might update Firebase with the selected answer.
+    setTimeout(() => showResults(`question${currentQuestionIndex}`), 500); // Simulate a delay before showing results
 }
 
+// Function to show results after all participants have voted or time is up
 function showResults(questionKey) {
-    // Fetch results from Firebase and animate percentage bars
+    // Placeholder for showing results. This would involve fetching the answer counts from Firebase, calculating percentages, and animating the bars.
 }
 
+// Function to start or reset the timer
 function startTimer() {
-    let timeLeft = 10;
+    let timeLeft = 10; // Timer set for 10 seconds
     const timerEl = document.getElementById('timer');
+    timerEl.textContent = `Time left: ${timeLeft}s`;
+
     const countdown = setInterval(() => {
         timeLeft--;
         timerEl.textContent = `Time left: ${timeLeft}s`;
+
         if (timeLeft <= 0) {
             clearInterval(countdown);
             timerEl.textContent = "Time's up!";
-            setTimeout(() => showResults(`question${currentQuestionIndex + 1}`), 3000); // Show results with a delay
+            // Show results after a 3-second delay
+            setTimeout(() => showResults(`question${currentQuestionIndex}`), 3000);
         }
     }, 1000);
 }
+
+document.addEventListener('DOMContentLoaded', startQuiz);
