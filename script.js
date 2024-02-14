@@ -85,6 +85,7 @@ function showResults(questionKey) {
     });
 }
 
+
 document.getElementById('nextQuestion').addEventListener('click', () => {
     currentQuestionIndex++;
     populateQuiz();
