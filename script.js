@@ -36,6 +36,35 @@ function fetchQuizData() {
     });
 }
 
+
+
+function populateQuiz() {
+    // Check if quizData is loaded and not null
+    if (quizData && currentQuestionIndex < quizData.length) {
+        const currentQuestion = quizData[currentQuestionIndex];
+        if (currentQuestion && currentQuestion.answers && currentQuestion.answers.length > 0) {
+            document.getElementById('question').textContent = currentQuestion.question;
+            const answersUl = document.getElementById('answers');
+            answersUl.innerHTML = ''; // Clear previous answers
+            currentQuestion.answers.forEach((answer, index) => {
+                const li = document.createElement('li');
+                li.textContent = answer;
+                li.onclick = () => selectAnswer(index);
+                answersUl.appendChild(li);
+            });
+        } else {
+            console.error('Quiz data is malformed or missing answers.');
+        }
+    } else {
+        console.error('Quiz data is not loaded or index is out of bounds.');
+    }
+}
+
+
+
+
+
+
 // Function to populate the quiz question and answers
 function populateQuiz() {
     if (currentQuestionIndex < quizData.length) {
